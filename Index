@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Creator Download Hub – Assets & Tips</title>
+  <meta name="description" content="Download gratis assets voor videobewerking: SFX, muziek, overlays en templates. Inclusief snelle tips onderaan de pagina." />
+  <style>
+    :root{
+      --bg:#0a0a0f; --bg2:#0f0f18; --panel:#121223; --panel-2:#16162b; --text:#f1effa; --muted:#bdb7d9; --line:#272749; --accent:#8b5cf6; --accent-2:#a78bfa; --accent-3:#6d28d9;
+      --radius:18px; --shadow:0 12px 40px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; color:var(--text); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu; background:radial-gradient(900px 600px at 100% -20%,rgba(139,92,246,.10),transparent 60%), radial-gradient(800px 500px at -10% 110%,rgba(109,40,217,.10),transparent 60%), var(--bg);}    
+    a{color:var(--accent)}
+
+    /* Splash (first‑load) */
+    .splash{position:fixed; inset:0; background:linear-gradient(160deg,#0b0b12,#0f0f1b); display:grid; place-items:center; z-index:9999; overflow:hidden}
+    .splash-inner{display:grid; place-items:center; gap:14px}
+    .splash-logo{width:84px; height:84px; border-radius:22px; background:conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent)); box-shadow:0 0 0 6px rgba(139,92,246,.12), 0 0 80px rgba(139,92,246,.25) inset;}
+    .splash-text{letter-spacing:.2px; color:var(--muted)}
+    @keyframes pop {0%{transform:scale(.7); opacity:0} 60%{transform:scale(1.06); opacity:1} 100%{transform:scale(1)}}
+    @keyframes slide {from{transform:translateY(10px); opacity:0} to{transform:translateY(0); opacity:1}}
+    .anim-pop{animation:pop .7s cubic-bezier(.2,.7,.2,1) both}
+    .anim-slide{animation:slide .6s .2s ease-out both}
+    .hide{animation:fadeout .5s ease-in forwards}
+    @keyframes fadeout{to{opacity:0; visibility:hidden}}
+    @media (prefers-reduced-motion: reduce){.anim-pop,.anim-slide,.hide{animation:none}}
+
+    header.site{position:sticky; top:0; z-index:50; backdrop-filter:saturate(160%) blur(10px); background:linear-gradient(180deg, rgba(10,10,16,.9), rgba(10,10,16,.5)); border-bottom:1px solid var(--line)}
+    .wrap{max-width:1120px; margin:0 auto; padding:0 18px}
+    .topbar{display:flex; align-items:center; gap:14px; padding:14px 0}
+    .logo{display:flex; align-items:center; gap:12px; font-weight:800}
+    .logo-badge{width:34px; height:34px; border-radius:12px; background:linear-gradient(135deg,var(--accent-2),var(--accent)); display:grid; place-items:center; color:#070711; font-weight:900}
+    nav a{margin:0 8px; padding:8px 10px; border-radius:10px; color:var(--muted); text-decoration:none}
+    nav a:hover{background:#1b1b2f; color:var(--text)}
+
+    .hero{padding:54px 0 22px; display:grid; gap:18px}
+    .hero .banner{display:grid; grid-template-columns:1.1fr .9fr; gap:18px}
+    @media (max-width: 900px){.hero .banner{grid-template-columns:1fr}}
+    .panel{background:linear-gradient(180deg,var(--panel),var(--panel-2)); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .hero .panel{padding:18px}
+
+    .hero h1{font-size:clamp(28px,5vw,44px); line-height:1.1; margin:0 0 8px}
+    .muted{color:var(--muted)}
+    .btn{border:1px solid #2b2b51; background:#141428; color:var(--text); padding:12px 14px; border-radius:12px; cursor:pointer}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#0c0c14; border:none; font-weight:800}
+    .btn.icon{display:inline-flex; align-items:center; gap:8px}
+
+    .search{width:100%; padding:12px 14px; border-radius:12px; border:1px solid #2b2b51; background:#121228; color:var(--text)}
+
+    .section{padding:26px 0}
+    .section h2{font-size:clamp(20px,3.2vw,28px); margin:0 0 12px}
+
+    .toolbar{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+    .chip{display:inline-flex; gap:8px; align-items:center; padding:8px 10px; border-radius:999px; border:1px solid #2b2b51; background:#121228; color:var(--muted); cursor:pointer; user-select:none}
+    .chip.active{border-color:var(--accent); color:var(--text)}
+
+    .grid{display:grid; gap:16px}
+    .grid.cards{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+
+    .card{position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:16px; border:1px solid var(--line); background:linear-gradient(180deg,#121225,#0f0f1f)}
+    .card .thumb{aspect-ratio:16/10; background:#0d0d18; display:block; width:100%; object-fit:cover}
+    .card .body{padding:14px}
+    .card h3{margin:0 0 6px; font-size:18px}
+    .meta{display:flex; gap:8px; flex-wrap:wrap; font-size:.9rem; color:var(--muted)}
+    .meta .dot::before{content:"• "; opacity:.6}
+    .card .cta{display:flex; gap:10px; margin-top:auto; padding:14px}
+
+    .tip{padding:14px; border-radius:14px; border:1px dashed #2c2c55; background:#0f0f21}
+    footer{opacity:.85; padding:30px 0 60px; color:var(--muted)}
+
+    .empty{opacity:.8; text-align:center; padding:24px}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+  </style>
+</head>
+<body>
+  <!-- Splash animation (first visit only) -->
+  <div id="splash" class="splash" role="dialog" aria-live="polite" aria-label="Laden">
+    <div class="splash-inner">
+      <div class="splash-logo anim-pop" aria-hidden="true"></div>
+      <div class="splash-text anim-slide">Creator Download Hub</div>
+      <div class="sr-only">Pagina wordt geladen…</div>
+    </div>
+  </div>
+
+  <header class="site">
+    <div class="wrap topbar">
+      <div class="logo"><div class="logo-badge">CD</div> Creator Download Hub</div>
+      <nav style="margin-left:auto">
+        <a href="#assets">Downloads</a>
+        <a href="#tips">Tips</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="banner">
+        <div class="panel">
+          <h1>Download assets voor je video’s</h1>
+          <p class="muted">SFX, muziek, overlays, LUTs & templates. Alles op één plek — klaar voor <strong>Premiere</strong>, <strong>Resolve</strong>, <strong>CapCut</strong> en meer.</p>
+          <div class="toolbar" style="margin-top:12px">
+            <input id="q" class="search" placeholder="Zoek: ‘whoosh’, ‘cinematic music’, ‘lower third’…" />
+            <button id="clear" class="btn" aria-label="Wissen">Wissen</button>
+          </div>
+          <div class="toolbar" style="margin-top:10px">
+            <span class="chip active" data-filter="all">Alles</span>
+            <span class="chip" data-filter="sfx">SFX</span>
+            <span class="chip" data-filter="music">Muziek</span>
+            <span class="chip" data-filter="overlay">Overlays</span>
+            <span class="chip" data-filter="template">Templates</span>
+            <span class="chip" data-filter="lut">LUTs</span>
+          </div>
+        </div>
+        <figure class="panel" style="padding:0; overflow:hidden">
+          <img src="images/hero-shot.jpg" alt="Abstracte paarse visuals" class="thumb" style="aspect-ratio:auto; height:100%; object-fit:cover" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+
+    <section id="assets" class="section">
+      <h2>Bestanden</h2>
+      <p class="muted">Klik op <em>Download</em> om direct te downloaden, of <em>Kopieer link</em> om te delen.</p>
+      <div id="cards" class="grid cards" aria-live="polite"></div>
+      <div id="empty" class="empty" hidden>Geen resultaten… pas je zoekopdracht of filter aan.</div>
+    </section>
+
+    <section id="tips" class="section">
+      <h2>Snelle tips</h2>
+      <div class="grid">
+        <div class="tip">
+          <strong>Audio‑mix</strong> — Stem rond −3 dB, muziek −18 tot −12 dB. Duck de muziek −6 dB onder voice‑over.
+        </div>
+        <div class="tip">
+          <strong>Kleur</strong> — Corrigeer eerst witbalans/contrast, daarna pas een LUT voor de look.
+        </div>
+        <div class="tip">
+          <strong>Export YouTube</strong> — H.264, 1080p, 18–20 Mbps, AAC 320 kbps. Shorts: 1080×1920, 12–18 Mbps.
+        </div>
+      </div>
+    </section>
+
+    <footer class="section">
+      <p class="muted">© <span id="year"></span> Creator Download Hub — Paarse/Zwarte editie. Plaats je bestanden in <span class="muted" style="opacity:.85">/assets/</span> en je afbeeldingen in <span class="muted" style="opacity:.85">/images/</span>.</p>
+    </footer>
+  </main>
+
+  <template id="card-template">
+    <article class="card" data-type="">
+      <img class="thumb" alt="Voorbeeldafbeelding" loading="lazy" />
+      <div class="body">
+        <h3></h3>
+        <p class="muted"></p>
+        <div class="meta">
+          <span class="type"></span>
+          <span class="dot size"></span>
+          <span class="dot ext"></span>
+        </div>
+      </div>
+      <div class="cta">
+        <a class="btn btn-primary icon" download>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3v10.59l3.3-3.3 1.4 1.42L12 17.41l-4.7-4.7 1.4-1.42 3.3 3.3V3h2z"/></svg>
+          Download
+        </a>
+        <button class="btn icon copy">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          Kopieer link
+        </button>
+      </div>
+    </article>
+  </template>
+
+  <script>
+    // First‑load splash
+    const splash = document.getElementById('splash');
+    const firstVisitKey = 'cdh_seen';
+    const firstTime = !localStorage.getItem(firstVisitKey);
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hideSplash = () => { splash.classList.add('hide'); setTimeout(()=> splash.remove(), prefersReduced?0:480); };
+    if(firstTime){
+      setTimeout(()=>{ hideSplash(); localStorage.setItem(firstVisitKey,'1'); }, prefersReduced?0:1100);
+    } else {
+      hideSplash();
+    }
+
+    // Demo data — vervang met jouw bestanden (zet in /assets en /images)
+    const files = [
+      {title:'Whoosh Pack v1', desc:'20 snelle swooshes voor transitions.', type:'sfx', size:'3.2 MB', ext:'WAV', url:'assets/whoosh-pack-v1.zip', thumb:'images/whoosh.jpg'},
+      {title:'Cinematic Underscore Loop', desc:'Subtiele spanning voor voice‑over.', type:'music', size:'8.4 MB', ext:'MP3', url:'assets/cinematic-underscore.mp3', thumb:'images/music.jpg'},
+      {title:'Clean Lower Third – AE MOGRT', desc:'Moderne lower third met controls.', type:'template', size:'0.6 MB', ext:'MOGRT', url:'assets/lowerthird.mogrt', thumb:'images/lowerthird.jpg'},
+      {title:'Glass Overlay Pack', desc:'Glazen vegen + light leaks (blend).', type:'overlay', size:'42 MB', ext:'MP4', url:'assets/glass-overlays.zip', thumb:'images/overlay.jpg'},
+      {title:'Neutral Rec709 LUT', desc:'Lichte contrast‑boost, neutrale kleur.', type:'lut', size:'12 KB', ext:'CUBE', url:'assets/neutral709.cube', thumb:'images/lut.jpg'}
+    ];
+
+    const typeLabel = t => ({sfx:'SFX', music:'Muziek', overlay:'Overlay', template:'Template', lut:'LUT'})[t]||t;
+
+    const grid = document.getElementById('cards');
+    const empty = document.getElementById('empty');
+    const tpl = document.getElementById('card-template');
+
+    function render(list){
+      grid.innerHTML='';
+      if(!list.length){ empty.hidden=false; return; } else { empty.hidden=true; }
+      const frag = document.createDocumentFragment();
+      list.forEach(f=>{
+        const card = tpl.content.firstElementChild.cloneNode(true);
+        card.dataset.type = f.type;
+        card.querySelector('h3').textContent = f.title;
+        card.querySelector('p').textContent = f.desc;
+        card.querySelector('.type').textContent = typeLabel(f.type);
+        card.querySelector('.size').textContent = f.size;
+        card.querySelector('.ext').textContent = f.ext;
+        const img = card.querySelector('.thumb');
+        img.src = f.thumb; img.alt = f.title + ' – voorbeeld'; img.loading='lazy';
+        const a = card.querySelector('a'); a.href = f.url; a.setAttribute('download',''); a.title = 'Download ' + f.title;
+        card.querySelector('.copy').addEventListener('click', ()=>{
+          const absolute = new URL(f.url, window.location.href).href;
+          navigator.clipboard.writeText(absolute).then(()=>{
+            const original = event.target.closest('button');
+            const txt = original.textContent; original.textContent='Gekopieerd!';
+            setTimeout(()=> original.textContent='Kopieer link', 1000);
+          });
+        });
+        frag.appendChild(card);
+      });
+      grid.appendChild(frag);
+    }
+
+    // Search & filter
+    const q = document.getElementById('q');
+    const clearBtn = document.getElementById('clear');
+    const chips = Array.from(document.querySelectorAll('.chip'));
+
+    let currentType = 'all';
+    let currentQ = '';
+
+    function apply(){
+      const term = currentQ.trim().toLowerCase();
+      const out = files.filter(f=>{
+        const typeOk = currentType==='all' || f.type===currentType;
+        const text = (f.title+' '+f.desc+' '+f.ext).toLowerCase();
+        const qOk = !term || text.includes(term);
+        return typeOk && qOk;
+      });
+      render(out);
+    }
+
+    q.addEventListener('input', e=>{ currentQ = e.target.value; apply(); });
+    clearBtn.addEventListener('click', ()=>{ q.value=''; currentQ=''; apply(); });
+    chips.forEach(c=> c.addEventListener('click', ()=>{
+      chips.forEach(x=> x.classList.remove('active'));
+      c.classList.add('active');
+      currentType = c.dataset.filter; apply();
+    }));
+
+    // Kickoff
+    apply();
+
+    // Jaar
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
