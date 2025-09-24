@@ -3,263 +3,477 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Creator Download Hub – Assets & Tips</title>
-  <meta name="description" content="Download gratis assets voor videobewerking: SFX, muziek, overlays en templates. Inclusief snelle tips onderaan de pagina." />
+  <title>Greenscreen Temple Hub</title>
+  <meta name="description" content="Upload je greenscreen templates naar de map ‘files’ en deel ze direct met iedereen." />
   <style>
-    :root{
-      --bg:#0a0a0f; --bg2:#0f0f18; --panel:#121223; --panel-2:#16162b; --text:#f1effa; --muted:#bdb7d9; --line:#272749; --accent:#8b5cf6; --accent-2:#a78bfa; --accent-3:#6d28d9;
-      --radius:18px; --shadow:0 12px 40px rgba(0,0,0,.45);
+    :root {
+      color-scheme: dark;
+      --bg: #030712;
+      --bg-soft: #050b1b;
+      --panel: #08142d;
+      --panel-soft: #0d1c3a;
+      --border: rgba(59, 130, 246, 0.35);
+      --glow: rgba(59, 130, 246, 0.25);
+      --text: #e3edff;
+      --muted: rgba(226, 232, 240, 0.7);
+      --accent: #3b82f6;
+      --accent-soft: rgba(59, 130, 246, 0.12);
+      --radius-lg: 26px;
+      --radius: 16px;
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0; color:var(--text); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu; background:radial-gradient(900px 600px at 100% -20%,rgba(139,92,246,.10),transparent 60%), radial-gradient(800px 500px at -10% 110%,rgba(109,40,217,.10),transparent 60%), var(--bg);}    
-    a{color:var(--accent)}
 
-    /* Splash (first‑load) */
-    .splash{position:fixed; inset:0; background:linear-gradient(160deg,#0b0b12,#0f0f1b); display:grid; place-items:center; z-index:9999; overflow:hidden}
-    .splash-inner{display:grid; place-items:center; gap:14px}
-    .splash-logo{width:84px; height:84px; border-radius:22px; background:conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent)); box-shadow:0 0 0 6px rgba(139,92,246,.12), 0 0 80px rgba(139,92,246,.25) inset;}
-    .splash-text{letter-spacing:.2px; color:var(--muted)}
-    @keyframes pop {0%{transform:scale(.7); opacity:0} 60%{transform:scale(1.06); opacity:1} 100%{transform:scale(1)}}
-    @keyframes slide {from{transform:translateY(10px); opacity:0} to{transform:translateY(0); opacity:1}}
-    .anim-pop{animation:pop .7s cubic-bezier(.2,.7,.2,1) both}
-    .anim-slide{animation:slide .6s .2s ease-out both}
-    .hide{animation:fadeout .5s ease-in forwards}
-    @keyframes fadeout{to{opacity:0; visibility:hidden}}
-    @media (prefers-reduced-motion: reduce){.anim-pop,.anim-slide,.hide{animation:none}}
+    * {
+      box-sizing: border-box;
+    }
 
-    header.site{position:sticky; top:0; z-index:50; backdrop-filter:saturate(160%) blur(10px); background:linear-gradient(180deg, rgba(10,10,16,.9), rgba(10,10,16,.5)); border-bottom:1px solid var(--line)}
-    .wrap{max-width:1120px; margin:0 auto; padding:0 18px}
-    .topbar{display:flex; align-items:center; gap:14px; padding:14px 0}
-    .logo{display:flex; align-items:center; gap:12px; font-weight:800}
-    .logo-badge{width:34px; height:34px; border-radius:12px; background:linear-gradient(135deg,var(--accent-2),var(--accent)); display:grid; place-items:center; color:#070711; font-weight:900}
-    nav a{margin:0 8px; padding:8px 10px; border-radius:10px; color:var(--muted); text-decoration:none}
-    nav a:hover{background:#1b1b2f; color:var(--text)}
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 15% 10%, rgba(37, 99, 235, 0.18), transparent 55%),
+        radial-gradient(circle at 85% 0%, rgba(14, 165, 233, 0.12), transparent 60%),
+        var(--bg);
+      min-height: 100vh;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+    }
 
-    .hero{padding:54px 0 22px; display:grid; gap:18px}
-    .hero .banner{display:grid; grid-template-columns:1.1fr .9fr; gap:18px}
-    @media (max-width: 900px){.hero .banner{grid-template-columns:1fr}}
-    .panel{background:linear-gradient(180deg,var(--panel),var(--panel-2)); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
-    .hero .panel{padding:18px}
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: linear-gradient(180deg, rgba(3, 7, 18, 0.95), rgba(3, 7, 18, 0.75));
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(18px) saturate(130%);
+    }
 
-    .hero h1{font-size:clamp(28px,5vw,44px); line-height:1.1; margin:0 0 8px}
-    .muted{color:var(--muted)}
-    .btn{border:1px solid #2b2b51; background:#141428; color:var(--text); padding:12px 14px; border-radius:12px; cursor:pointer}
-    .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#0c0c14; border:none; font-weight:800}
-    .btn.icon{display:inline-flex; align-items:center; gap:8px}
+    .container {
+      width: min(1100px, 92vw);
+      margin: 0 auto;
+      padding: 0 0 48px;
+    }
 
-    .search{width:100%; padding:12px 14px; border-radius:12px; border:1px solid #2b2b51; background:#121228; color:var(--text)}
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      gap: 18px;
+    }
 
-    .section{padding:26px 0}
-    .section h2{font-size:clamp(20px,3.2vw,28px); margin:0 0 12px}
+    .logo {
+      display: inline-flex;
+      gap: 14px;
+      align-items: center;
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
 
-    .toolbar{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
-    .chip{display:inline-flex; gap:8px; align-items:center; padding:8px 10px; border-radius:999px; border:1px solid #2b2b51; background:#121228; color:var(--muted); cursor:pointer; user-select:none}
-    .chip.active{border-color:var(--accent); color:var(--text)}
+    .logo-badge {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), #1d4ed8);
+      box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.1), 0 18px 45px var(--glow);
+      border-radius: 14px;
+      font-weight: 800;
+      color: #020617;
+    }
 
-    .grid{display:grid; gap:16px}
-    .grid.cards{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    main {
+      flex: 1;
+    }
 
-    .card{position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:16px; border:1px solid var(--line); background:linear-gradient(180deg,#121225,#0f0f1f)}
-    .card .thumb{aspect-ratio:16/10; background:#0d0d18; display:block; width:100%; object-fit:cover}
-    .card .body{padding:14px}
-    .card h3{margin:0 0 6px; font-size:18px}
-    .meta{display:flex; gap:8px; flex-wrap:wrap; font-size:.9rem; color:var(--muted)}
-    .meta .dot::before{content:"• "; opacity:.6}
-    .card .cta{display:flex; gap:10px; margin-top:auto; padding:14px}
+    .hero {
+      padding: 46px 0 10px;
+      display: grid;
+      gap: 26px;
+    }
 
-    .tip{padding:14px; border-radius:14px; border:1px dashed #2c2c55; background:#0f0f21}
-    footer{opacity:.85; padding:30px 0 60px; color:var(--muted)}
+    .hero-card {
+      background: linear-gradient(160deg, rgba(30, 64, 175, 0.22), rgba(8, 12, 24, 0.4)), var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 60px rgba(2, 6, 23, 0.7);
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 6vw, 40px);
+      display: grid;
+      gap: 18px;
+    }
 
-    .empty{opacity:.8; text-align:center; padding:24px}
-    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      line-height: 1.05;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--accent);
+      color: #020617;
+      font-weight: 600;
+      padding: 12px 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 18px 34px rgba(59, 130, 246, 0.38);
+    }
+
+    .cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 45px rgba(59, 130, 246, 0.45);
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .search {
+      flex: 1 1 260px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      background: rgba(15, 23, 42, 0.7);
+      color: inherit;
+      font: inherit;
+      backdrop-filter: blur(16px);
+    }
+
+    .search::placeholder {
+      color: rgba(226, 232, 240, 0.45);
+    }
+
+    .filter {
+      display: inline-flex;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: rgba(15, 23, 42, 0.55);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter.active {
+      color: var(--text);
+      border-color: var(--accent);
+      background: rgba(37, 99, 235, 0.18);
+      box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.1);
+    }
+
+    .status {
+      margin-top: 18px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .grid {
+      margin-top: 28px;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .card {
+      background: linear-gradient(180deg, var(--panel), var(--panel-soft));
+      border-radius: var(--radius);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      box-shadow: 0 18px 38px rgba(2, 6, 23, 0.65);
+      display: grid;
+      padding: 20px;
+      gap: 16px;
+    }
+
+    .card header {
+      position: relative;
+      background: none;
+      border: none;
+      padding: 0;
+      backdrop-filter: none;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.16);
+      color: rgba(191, 219, 254, 0.95);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+    }
+
+    video,
+    audio {
+      width: 100%;
+      border-radius: calc(var(--radius) - 4px);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .download {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      align-self: flex-start;
+      text-decoration: none;
+      background: rgba(37, 99, 235, 0.18);
+      border: 1px solid rgba(37, 99, 235, 0.5);
+      color: var(--text);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .download:hover {
+      background: rgba(59, 130, 246, 0.28);
+      box-shadow: 0 12px 24px rgba(59, 130, 246, 0.25);
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 36px 0 60px;
+      color: rgba(148, 163, 184, 0.7);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        padding-bottom: 32px;
+      }
+
+      .hero-card {
+        padding: 24px;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Splash animation (first visit only) -->
-  <div id="splash" class="splash" role="dialog" aria-live="polite" aria-label="Laden">
-    <div class="splash-inner">
-      <div class="splash-logo anim-pop" aria-hidden="true"></div>
-      <div class="splash-text anim-slide">Creator Download Hub</div>
-      <div class="sr-only">Pagina wordt geladen…</div>
-    </div>
-  </div>
-
-  <header class="site">
-    <div class="wrap topbar">
-      <div class="logo"><div class="logo-badge">CD</div> Creator Download Hub</div>
-      <nav style="margin-left:auto">
-        <a href="#assets">Downloads</a>
-        <a href="#tips">Tips</a>
-      </nav>
+  <header>
+    <div class="container topbar">
+      <div class="logo"><span class="logo-badge">GT</span> Greenscreen Temple Hub</div>
+      <div class="muted" id="counter">0 bestanden</div>
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <div class="banner">
-        <div class="panel">
-          <h1>Download assets voor je video’s</h1>
-          <p class="muted">SFX, muziek, overlays, LUTs & templates. Alles op één plek — klaar voor <strong>Premiere</strong>, <strong>Resolve</strong>, <strong>CapCut</strong> en meer.</p>
-          <div class="toolbar" style="margin-top:12px">
-            <input id="q" class="search" placeholder="Zoek: ‘whoosh’, ‘cinematic music’, ‘lower third’…" />
-            <button id="clear" class="btn" aria-label="Wissen">Wissen</button>
+  <main>
+    <div class="container">
+      <section class="hero">
+        <article class="hero-card">
+          <h1>Deel je greenscreen tempels met de wereld</h1>
+          <p class="muted">Sleep nieuwe MP4- of MP3-bestanden naar de map <strong>files/</strong> en ze verschijnen automatisch hier. Iedereen kan ze online bekijken of direct downloaden.</p>
+          <a class="cta" href="files/" target="_blank" rel="noopener">📁 Open de map</a>
+          <div class="controls">
+            <input id="search" class="search" type="search" placeholder="Zoeken op naam…" aria-label="Zoeken" />
+            <button class="filter active" data-filter="all" type="button">Alles</button>
+            <button class="filter" data-filter="video" type="button">Alleen video</button>
+            <button class="filter" data-filter="audio" type="button">Alleen audio</button>
           </div>
-          <div class="toolbar" style="margin-top:10px">
-            <span class="chip active" data-filter="all">Alles</span>
-            <span class="chip" data-filter="sfx">SFX</span>
-            <span class="chip" data-filter="music">Muziek</span>
-            <span class="chip" data-filter="overlay">Overlays</span>
-            <span class="chip" data-filter="template">Templates</span>
-            <span class="chip" data-filter="lut">LUTs</span>
-          </div>
-        </div>
-        <figure class="panel" style="padding:0; overflow:hidden">
-          <img src="images/hero-shot.jpg" alt="Abstracte paarse visuals" class="thumb" style="aspect-ratio:auto; height:100%; object-fit:cover" loading="lazy" />
-        </figure>
-      </div>
-    </section>
+          <p class="status" id="status" role="status">Bezig met laden…</p>
+        </article>
+      </section>
 
-    <section id="assets" class="section">
-      <h2>Bestanden</h2>
-      <p class="muted">Klik op <em>Download</em> om direct te downloaden, of <em>Kopieer link</em> om te delen.</p>
-      <div id="cards" class="grid cards" aria-live="polite"></div>
-      <div id="empty" class="empty" hidden>Geen resultaten… pas je zoekopdracht of filter aan.</div>
-    </section>
+      <section class="grid" id="grid" aria-live="polite"></section>
 
-    <section id="tips" class="section">
-      <h2>Snelle tips</h2>
-      <div class="grid">
-        <div class="tip">
-          <strong>Audio‑mix</strong> — Stem rond −3 dB, muziek −18 tot −12 dB. Duck de muziek −6 dB onder voice‑over.
-        </div>
-        <div class="tip">
-          <strong>Kleur</strong> — Corrigeer eerst witbalans/contrast, daarna pas een LUT voor de look.
-        </div>
-        <div class="tip">
-          <strong>Export YouTube</strong> — H.264, 1080p, 18–20 Mbps, AAC 320 kbps. Shorts: 1080×1920, 12–18 Mbps.
-        </div>
-      </div>
-    </section>
-
-    <footer class="section">
-      <p class="muted">© <span id="year"></span> Creator Download Hub — Paarse/Zwarte editie. Plaats je bestanden in <span class="muted" style="opacity:.85">/assets/</span> en je afbeeldingen in <span class="muted" style="opacity:.85">/images/</span>.</p>
-    </footer>
+      <footer>
+        Gemaakt voor snelle downloads van greenscreen templates. Voeg gewoon nieuwe bestanden toe en deel de link!
+      </footer>
+    </div>
   </main>
 
   <template id="card-template">
-    <article class="card" data-type="">
-      <img class="thumb" alt="Voorbeeldafbeelding" loading="lazy" />
-      <div class="body">
+    <article class="card">
+      <header>
+        <span class="badge"></span>
         <h3></h3>
         <p class="muted"></p>
-        <div class="meta">
-          <span class="type"></span>
-          <span class="dot size"></span>
-          <span class="dot ext"></span>
-        </div>
-      </div>
-      <div class="cta">
-        <a class="btn btn-primary icon" download>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3v10.59l3.3-3.3 1.4 1.42L12 17.41l-4.7-4.7 1.4-1.42 3.3 3.3V3h2z"/></svg>
-          Download
-        </a>
-        <button class="btn icon copy">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-          Kopieer link
-        </button>
-      </div>
+      </header>
+      <div class="preview"></div>
+      <div class="meta"></div>
+      <a class="download" download>⬇️ Download</a>
     </article>
   </template>
 
   <script>
-    // First‑load splash
-    const splash = document.getElementById('splash');
-    const firstVisitKey = 'cdh_seen';
-    const firstTime = !localStorage.getItem(firstVisitKey);
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const hideSplash = () => { splash.classList.add('hide'); setTimeout(()=> splash.remove(), prefersReduced?0:480); };
-    if(firstTime){
-      setTimeout(()=>{ hideSplash(); localStorage.setItem(firstVisitKey,'1'); }, prefersReduced?0:1100);
-    } else {
-      hideSplash();
-    }
-
-    // Demo data — vervang met jouw bestanden (zet in /assets en /images)
-    const files = [
-      {title:'Whoosh Pack v1', desc:'20 snelle swooshes voor transitions.', type:'sfx', size:'3.2 MB', ext:'WAV', url:'assets/whoosh-pack-v1.zip', thumb:'images/whoosh.jpg'},
-      {title:'Cinematic Underscore Loop', desc:'Subtiele spanning voor voice‑over.', type:'music', size:'8.4 MB', ext:'MP3', url:'assets/cinematic-underscore.mp3', thumb:'images/music.jpg'},
-      {title:'Clean Lower Third – AE MOGRT', desc:'Moderne lower third met controls.', type:'template', size:'0.6 MB', ext:'MOGRT', url:'assets/lowerthird.mogrt', thumb:'images/lowerthird.jpg'},
-      {title:'Glass Overlay Pack', desc:'Glazen vegen + light leaks (blend).', type:'overlay', size:'42 MB', ext:'MP4', url:'assets/glass-overlays.zip', thumb:'images/overlay.jpg'},
-      {title:'Neutral Rec709 LUT', desc:'Lichte contrast‑boost, neutrale kleur.', type:'lut', size:'12 KB', ext:'CUBE', url:'assets/neutral709.cube', thumb:'images/lut.jpg'}
-    ];
-
-    const typeLabel = t => ({sfx:'SFX', music:'Muziek', overlay:'Overlay', template:'Template', lut:'LUT'})[t]||t;
-
-    const grid = document.getElementById('cards');
-    const empty = document.getElementById('empty');
+    const statusEl = document.getElementById('status');
+    const grid = document.getElementById('grid');
     const tpl = document.getElementById('card-template');
+    const filters = Array.from(document.querySelectorAll('.filter'));
+    const searchInput = document.getElementById('search');
+    const counter = document.getElementById('counter');
 
-    function render(list){
-      grid.innerHTML='';
-      if(!list.length){ empty.hidden=false; return; } else { empty.hidden=true; }
-      const frag = document.createDocumentFragment();
-      list.forEach(f=>{
-        const card = tpl.content.firstElementChild.cloneNode(true);
-        card.dataset.type = f.type;
-        card.querySelector('h3').textContent = f.title;
-        card.querySelector('p').textContent = f.desc;
-        card.querySelector('.type').textContent = typeLabel(f.type);
-        card.querySelector('.size').textContent = f.size;
-        card.querySelector('.ext').textContent = f.ext;
-        const img = card.querySelector('.thumb');
-        img.src = f.thumb; img.alt = f.title + ' – voorbeeld'; img.loading='lazy';
-        const a = card.querySelector('a'); a.href = f.url; a.setAttribute('download',''); a.title = 'Download ' + f.title;
-        card.querySelector('.copy').addEventListener('click', ()=>{
-          const absolute = new URL(f.url, window.location.href).href;
-          navigator.clipboard.writeText(absolute).then(()=>{
-            const original = event.target.closest('button');
-            const txt = original.textContent; original.textContent='Gekopieerd!';
-            setTimeout(()=> original.textContent='Kopieer link', 1000);
-          });
-        });
-        frag.appendChild(card);
-      });
-      grid.appendChild(frag);
+    let assets = [];
+    let activeType = 'all';
+    let query = '';
+
+    function formatBytes(bytes) {
+      if (!Number.isFinite(bytes) || bytes <= 0) return 'Onbekend formaat';
+      const units = ['B', 'KB', 'MB', 'GB'];
+      const power = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+      const size = bytes / Math.pow(1024, power);
+      return `${size.toFixed(power === 0 ? 0 : 1)} ${units[power]}`;
     }
 
-    // Search & filter
-    const q = document.getElementById('q');
-    const clearBtn = document.getElementById('clear');
-    const chips = Array.from(document.querySelectorAll('.chip'));
-
-    let currentType = 'all';
-    let currentQ = '';
-
-    function apply(){
-      const term = currentQ.trim().toLowerCase();
-      const out = files.filter(f=>{
-        const typeOk = currentType==='all' || f.type===currentType;
-        const text = (f.title+' '+f.desc+' '+f.ext).toLowerCase();
-        const qOk = !term || text.includes(term);
-        return typeOk && qOk;
-      });
-      render(out);
+    function formatDate(value) {
+      if (!value) return 'Onbekende datum';
+      try {
+        return new Intl.DateTimeFormat('nl-NL', {
+          dateStyle: 'medium',
+          timeStyle: 'short',
+        }).format(new Date(value));
+      } catch (e) {
+        return value;
+      }
     }
 
-    q.addEventListener('input', e=>{ currentQ = e.target.value; apply(); });
-    clearBtn.addEventListener('click', ()=>{ q.value=''; currentQ=''; apply(); });
-    chips.forEach(c=> c.addEventListener('click', ()=>{
-      chips.forEach(x=> x.classList.remove('active'));
-      c.classList.add('active');
-      currentType = c.dataset.filter; apply();
-    }));
+    function createCard(item) {
+      const card = tpl.content.firstElementChild.cloneNode(true);
+      card.dataset.type = item.kind;
 
-    // Kickoff
-    apply();
+      card.querySelector('.badge').textContent = item.kind === 'video' ? 'Video' : 'Audio';
+      card.querySelector('h3').textContent = item.name;
+      card.querySelector('p').textContent = item.description || '';
 
-    // Jaar
-    document.getElementById('year').textContent = new Date().getFullYear();
+      const preview = card.querySelector('.preview');
+      if (item.kind === 'video') {
+        const video = document.createElement('video');
+        video.controls = true;
+        video.preload = 'metadata';
+        video.src = item.url;
+        video.playsInline = true;
+        preview.append(video);
+      } else {
+        const audio = document.createElement('audio');
+        audio.controls = true;
+        audio.preload = 'metadata';
+        audio.src = item.url;
+        preview.append(audio);
+      }
+
+      const meta = card.querySelector('.meta');
+      meta.innerHTML = `
+        <span>Bestand: <strong>${item.extension.toUpperCase()}</strong></span>
+        <span>Grootte: <strong>${formatBytes(item.size)}</strong></span>
+        <span>Laatst gewijzigd: <strong>${formatDate(item.modified)}</strong></span>
+      `;
+
+      const download = card.querySelector('.download');
+      download.href = item.url;
+      download.download = item.name;
+      download.setAttribute('aria-label', `Download ${item.name}`);
+
+      return card;
+    }
+
+    function render() {
+      const filtered = assets.filter((asset) => {
+        const matchType = activeType === 'all' || asset.kind === activeType;
+        const matchQuery = !query || asset.name.toLowerCase().includes(query);
+        return matchType && matchQuery;
+      });
+
+      grid.innerHTML = '';
+
+      if (!filtered.length) {
+        const empty = document.createElement('p');
+        empty.className = 'muted';
+        empty.textContent = 'Geen bestanden gevonden. Voeg MP3 of MP4 toe aan de map files/.';
+        grid.append(empty);
+      } else {
+        const frag = document.createDocumentFragment();
+        filtered.forEach((item) => frag.append(createCard(item)));
+        grid.append(frag);
+      }
+
+      const total = assets.length;
+      counter.textContent = `${filtered.length} ${filtered.length === 1 ? 'bestand' : 'bestanden'}${
+        filtered.length !== total ? ` van ${total}` : ''
+      }`;
+
+      if (statusEl && total) {
+        const base = `${filtered.length} ${filtered.length === 1 ? 'bestand' : 'bestanden'}`;
+        statusEl.textContent =
+          activeType === 'all' && !query
+            ? `Toont ${base}.`
+            : `Toont ${base} (van ${total} totaal).`;
+      }
+    }
+
+    function setStatus(message) {
+      if (statusEl) statusEl.textContent = message;
+    }
+
+    function handleFilterClick(button) {
+      filters.forEach((btn) => btn.classList.toggle('active', btn === button));
+      activeType = button.dataset.filter;
+      render();
+    }
+
+    filters.forEach((btn) => btn.addEventListener('click', () => handleFilterClick(btn)));
+
+    searchInput.addEventListener('input', (event) => {
+      query = event.target.value.trim().toLowerCase();
+      render();
+    });
+
+    async function loadFiles() {
+      try {
+        const response = await fetch('api/files');
+        if (!response.ok) {
+          throw new Error(`Server antwoordde met ${response.status}`);
+        }
+        const data = await response.json();
+        assets = data.map((item) => ({
+          ...item,
+          description: item.kind === 'video' ? 'Bekijk de video preview of download het bestand.' : 'Luister naar de audio preview of download het bestand.',
+        }));
+        assets.sort((a, b) => new Date(b.modified || 0) - new Date(a.modified || 0));
+        setStatus(`${assets.length} ${assets.length === 1 ? 'bestand' : 'bestanden'} gevonden.`);
+        render();
+      } catch (error) {
+        console.error(error);
+        setStatus('Kon de bestanden niet laden. Controleer of de server draait.');
+      }
+    }
+
+    loadFiles();
   </script>
 </body>
 </html>
