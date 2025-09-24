@@ -1,0 +1,16 @@
+{
+  "name": "greenscreen-temple-hub",
+  "version": "1.0.0",
+  "description": "Een eenvoudige downloadhub voor greenscreen templates met automatische map-scans.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "greenscreen",
+    "download",
+    "templates"
+  ],
+  "author": "",
+  "license": "MIT"
+}
